@@ -33,6 +33,7 @@ while game_is_on :
     if snake.head.distance(food) < 13 :
         # food의 크기가 10x10이므로
         food.refresh()
+        snake.extend()
         scoreboard.increase_score()
 
     # Detect collision with wall.
@@ -40,5 +41,22 @@ while game_is_on :
         game_is_on = False
         scoreboard.game_over()
 
+    # Detect collision with tail.
+    for segment in snake.segments :
+        if segment == snake.head :
+            pass
+        elif snake.head.distance(segment) < 10 :
+            game_is_on = False
+            scoreboard.game_over()
+    # if head collides with any segment in the tail :
+        # trigger game_over
 
 screen.exitonclick()
+
+
+
+
+
+
+
+
